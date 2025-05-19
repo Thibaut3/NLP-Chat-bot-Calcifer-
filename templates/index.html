@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<meta charset="UTF-8">
+<title>Calcifrère</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='styles-tousse.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='styles-talk.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='styles-think.css') }}" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+<body>
+  <svg width="0" height="0">
+    <filter id="wavy">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="turbulence">
+        <animate 
+          attributeName="baseFrequency" 
+          dur="8s" 
+          values="0.02;0.05;0.02" 
+          repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="10" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="wavy2">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="turbulence">
+        <animate 
+          attributeName="baseFrequency" 
+          dur="8s" 
+          values="0.02;0.05;0.02" 
+          repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="12" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+  <div class="editor">
+    <div class="row">
+      <div class="column">
+        <textarea id="user-text" placeholder="Écrivez votre message ici..."></textarea>
+      </div>
+      <div class="column">
+        <button id="process-button" class="loading-button">
+          <span class="button-text">Valider</span>
+        </button>
+      </div>
+    </div>
+    
+    <br>
+
+    <div id="result">
+      <div id="api-response" class="response"></div>
+    </div>
+  </div>
+  
+  
+    <div class="wrap">
+        <div class="calcifer" id ="calcifer">
+          <div class="up">
+          <div class="flame">
+            <div class="rear">
+              <div class="flames-round"></div>
+              <div class="flames-small"></div>
+              <div class="flames-tiny"></div>
+            </div>
+            <div class="front"></div>
+          </div>
+          <div class="face">
+            <div class="eyes">
+              <div class="pupil"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+
+          <div class="smoke-container">
+            <div class="smoke"></div>
+            <div class="smoke-delayed"></div>
+            <div class="smoke-third"></div>
+            <div class="smoke-fourth"></div>
+            <div class="smoke-fifth"></div>
+          </div>
+
+          <div class="smoke-tousse"></div>
+        </div>
+          <div class="log">
+            <div class="lines"></div>
+            <div class="crack-l"></div>
+            <div class="crack-r"></div>
+          </div>
+          <div class="left-arm"></div>
+          <div class="right-arm"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

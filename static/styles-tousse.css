@@ -1,0 +1,66 @@
+.calcifer.tousse .eyes::before {
+  height: 1px;
+  background: #1b0c08;
+  border: 1px solid #1b0c08;
+  box-shadow: 80px 0 0 0 #1b0c08;
+  filter: none;
+  transform: translateY(10px);
+}
+
+.calcifer.tousse .pupil{
+  opacity: 0;
+}
+
+.calcifer.tousse .mouth{
+  width: 10px;
+  transform: translateX(15px);
+  background: #a11600;
+}
+
+.calcifer.tousse .right-arm {
+  transform: rotate(60deg) scaleY(0.9);
+}
+
+.calcifer.tousse .left-arm {
+  transform: rotate(-80deg) scaleY(0.9);
+}
+
+.calcifer.tousse .up {
+  transform: scaleX(0.9);
+}
+
+.calcifer.fumee .smoke-tousse{
+  animation: apparition 0.6s ease-out forwards;
+  animation-duration: 1.5s;
+  animation-delay: 0.2s;
+}
+
+
+@keyframes apparition {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(6);
+  }
+  90%{
+    opacity: 0;
+    transform: scale(6);
+  }
+}
+
+.smoke-tousse{
+  width: 20px;
+  height: 20px;
+  background: #9b959549;
+  border-radius: 50%;
+  filter:blur(1px);
+  top: 154px;
+  left: 60px;
+  position: absolute;
+  opacity: 0;
+  box-shadow: 6px 3px 0 0 #726f6f49, 3px 7px 0 0 #3d3c3c3f;
+  z-index: 10;
+}

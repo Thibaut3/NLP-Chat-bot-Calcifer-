@@ -1,0 +1,287 @@
+.calcifer.think .right-arm {
+  transform: rotate(80deg) scaleY(1.5) translateY(-20px);
+}
+
+.calcifer.think .left-arm {
+  transform: rotate(-80deg) scaleY(1.5) translateY(-10px);
+}
+
+.calcifer.think .up {
+  transform: scaleX(1.5);
+}
+
+.calcifer.think .eyes::before {
+  height: 1px;
+  background: #1b0c08;
+  border: 1px solid #1b0c08;
+  box-shadow: 80px 0 0 0 #1b0c08;
+  filter: none;
+  transform: translateY(10px);
+}
+
+.calcifer.think .pupil{
+  opacity: 0;
+}
+
+.mouth {
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.calcifer.think .mouth {
+  transform: scale(0);
+  opacity: 0;
+}
+
+.calcifer.think .flames-round {
+    animation : flicker 0.5s infinite, flame-movement 1s infinite;
+}
+
+.right-arm, .left-arm, .up {
+  transition: all 0.6s ease-out;
+}
+
+.eyes::before {
+  transition: transform 0.6s ease-out;
+}
+
+/* Élément qui contiendra la fumée */
+.smoke-container {
+  position: absolute;
+  width: 350px; /* Largeur augmentée */
+  height: 300px; /* Hauteur augmentée */
+  top: 20px; /* Déplacé vers le bas de 0px à 20px */
+  left: -95px;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.2s ease-in-out;
+}
+
+/* La fumée apparaît quand Calcifer est en mode "think" */
+.calcifer.think .smoke-container {
+  opacity: 1;
+}
+
+/* Style de base pour toutes les particules de fumée */
+.smoke, .smoke-delayed, .smoke-third, .smoke-fourth {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  position: absolute;
+  opacity: 0;
+  animation-name: fade-in, smoke-rise;
+  animation-duration: 0.5s, 2.5s;
+  animation-timing-function: ease-in, cubic-bezier(0.25, 0.1, 0.25, 1);
+  animation-delay: 0s, 0.5s;
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: forwards, forwards;
+}
+
+/* Animation d'apparition progressive - opacité réduite */
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 0.2; } /* Réduit de 0.3 à 0.2 pour moins d'opacité */
+}
+
+/* Animation verticale améliorée pour la fumée plus large */
+@keyframes smoke-rise {
+  0% { 
+    opacity: 0.2; /* Réduit de 0.3 à 0.2 */
+    transform: translateY(0) scale(1.2) rotate(0deg);
+    filter: blur(3px);
+  }
+  25% {
+    opacity: 0.25; /* Réduit de 0.35 à 0.25 */
+    transform: translateY(-30px) scale(1.8) rotate(1deg);
+    filter: blur(4px);
+  }
+  50% {
+    opacity: 0.18; /* Réduit de 0.25 à 0.18 */
+    transform: translateY(-60px) scale(2.4) rotate(-1deg);
+    filter: blur(5px);
+  }
+  75% {
+    opacity: 0.12; /* Réduit de 0.15 à 0.12 */
+    transform: translateY(-80px) scale(2.8) rotate(0.5deg);
+    filter: blur(6px);
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateY(-100px) scale(3.2) rotate(-0.5deg);
+    filter: blur(7px);
+  }
+}
+
+/* Particules de fumée principale - positions ajustées plus bas */
+.smoke {
+  background: rgba(200, 200, 200, 0.2); /* Réduit de 0.25 à 0.2 */
+  top: 90px; /* Déplacé vers le bas de 70px à 90px */
+  left: 120px;
+  animation-delay: 0.1s, 0.6s;
+  box-shadow: 
+    /* Disposition plus large et plus diffuse - opacité réduite */
+    0px -15px 0 8px rgba(200, 200, 200, 0.15),
+    -15px -25px 0 10px rgba(200, 200, 200, 0.14),
+    10px -35px 0 12px rgba(200, 200, 200, 0.12),
+    -10px -45px 0 14px rgba(200, 200, 200, 0.1),
+    5px -55px 0 16px rgba(200, 200, 200, 0.08),
+    
+    /* Deuxième colonne plus large */
+    25px -20px 0 12px rgba(200, 200, 200, 0.13),
+    22px -35px 0 14px rgba(200, 200, 200, 0.11),
+    28px -50px 0 16px rgba(200, 200, 200, 0.09),
+    25px -65px 0 18px rgba(200, 200, 200, 0.07),
+    30px -80px 0 20px rgba(200, 200, 200, 0.06),
+    
+    /* Troisième colonne ajoutée pour plus de largeur */
+    45px -15px 0 14px rgba(200, 200, 200, 0.11),
+    50px -30px 0 16px rgba(200, 200, 200, 0.09),
+    45px -45px 0 18px rgba(200, 200, 200, 0.07),
+    50px -60px 0 20px rgba(200, 200, 200, 0.06);
+}
+
+/* Particules de fumée secondaires avec timing différent */
+.smoke-delayed {
+  background: rgba(200, 200, 200, 0.18); /* Réduit de 0.22 à 0.18 */
+  top: 85px; /* Déplacé vers le bas de 65px à 85px */
+  left: 130px;
+  animation-delay: 0.3s, 0.8s;
+  box-shadow: 
+    /* Disposition plus large - opacité réduite */
+    -15px -15px 0 9px rgba(200, 200, 200, 0.15),
+    -10px -30px 0 11px rgba(200, 200, 200, 0.14),
+    -20px -45px 0 13px rgba(200, 200, 200, 0.12),
+    -15px -60px 0 15px rgba(200, 200, 200, 0.1),
+    -25px -75px 0 17px rgba(200, 200, 200, 0.08),
+    
+    /* Deuxième colonne plus large */
+    -45px -20px 0 12px rgba(200, 200, 200, 0.13),
+    -40px -35px 0 14px rgba(200, 200, 200, 0.11),
+    -50px -50px 0 16px rgba(200, 200, 200, 0.09),
+    -45px -65px 0 18px rgba(200, 200, 200, 0.07),
+    -55px -80px 0 20px rgba(200, 200, 200, 0.06),
+    
+    /* Troisième colonne ajoutée */
+    -70px -25px 0 14px rgba(200, 200, 200, 0.11),
+    -65px -45px 0 16px rgba(200, 200, 200, 0.09),
+    -75px -65px 0 18px rgba(200, 200, 200, 0.07);
+}
+
+/* Particules de fumée tertiaires au centre */
+.smoke-third {
+  width: 10px;
+  height: 10px;
+  background: rgba(200, 200, 200, 0.16); /* Réduit de 0.2 à 0.16 */
+  top: 95px; /* Déplacé vers le bas de 75px à 95px */
+  left: 125px;
+  animation-delay: 0.5s, 1s;
+  box-shadow: 
+    /* Colonne centrale plus large - opacité réduite */
+    -5px -10px 0 8px rgba(200, 200, 200, 0.16),
+    5px -25px 0 10px rgba(200, 200, 200, 0.15),
+    -8px -40px 0 12px rgba(200, 200, 200, 0.13),
+    8px -55px 0 14px rgba(200, 200, 200, 0.11),
+    -5px -70px 0 16px rgba(200, 200, 200, 0.1),
+    
+    /* Plus haut et diffus */
+    0px -85px 0 18px rgba(200, 200, 200, 0.09),
+    -10px -100px 0 20px rgba(200, 200, 200, 0.08),
+    10px -115px 0 22px rgba(200, 200, 200, 0.07),
+    0px -130px 0 24px rgba(200, 200, 200, 0.05),
+    -8px -145px 0 26px rgba(200, 200, 200, 0.03),
+    
+    /* Ajout de particules pour plus de largeur */
+    20px -90px 0 18px rgba(200, 200, 200, 0.08),
+    -25px -105px 0 20px rgba(200, 200, 200, 0.07),
+    15px -125px 0 22px rgba(200, 200, 200, 0.05);
+}
+
+/* Fumée additionnelle pour plus de volume */
+.smoke-fourth {
+  width: 11px;
+  height: 11px;
+  background: rgba(200, 200, 200, 0.15); /* Réduit de 0.18 à 0.15 */
+  top: 88px; /* Déplacé vers le bas de 68px à 88px */
+  left: 115px;
+  animation-delay: 0.7s, 1.2s;
+  box-shadow: 
+    20px -10px 0 9px rgba(200, 200, 200, 0.15),
+    25px -25px 0 11px rgba(200, 200, 200, 0.14),
+    18px -40px 0 13px rgba(200, 200, 200, 0.12),
+    24px -55px 0 15px rgba(200, 200, 200, 0.1),
+    17px -70px 0 17px rgba(200, 200, 200, 0.08),
+    
+    40px -15px 0 12px rgba(200, 200, 200, 0.13),
+    45px -30px 0 14px rgba(200, 200, 200, 0.11),
+    38px -45px 0 16px rgba(200, 200, 200, 0.09),
+    44px -60px 0 18px rgba(200, 200, 200, 0.07),
+    37px -75px 0 20px rgba(200, 200, 200, 0.06),
+    
+    /* Ajout de particules pour encore plus de largeur */
+    60px -20px 0 14px rgba(200, 200, 200, 0.11),
+    65px -40px 0 16px rgba(200, 200, 200, 0.09),
+    58px -60px 0 18px rgba(200, 200, 200, 0.07);
+}
+
+/* Animation alternative pour varier les mouvements avec plus d'ampleur horizontale */
+@keyframes smoke-rise-alt {
+  0% { 
+    opacity: 0.2; /* Réduit de 0.3 à 0.2 */
+    transform: translateY(0) translateX(0) scale(1.2);
+    filter: blur(3px);
+  }
+  20% {
+    opacity: 0.25; /* Réduit de 0.35 à 0.25 */
+    transform: translateY(-25px) translateX(5px) scale(2.0);
+    filter: blur(4px);
+  }
+  40% {
+    opacity: 0.18; /* Réduit de 0.25 à 0.18 */
+    transform: translateY(-50px) translateX(-5px) scale(2.6);
+    filter: blur(5px);
+  }
+  70% {
+    opacity: 0.12; /* Réduit de 0.15 à 0.12 */
+    transform: translateY(-75px) translateX(3px) scale(3.0);
+    filter: blur(6px);
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateY(-100px) translateX(-3px) scale(3.5);
+    filter: blur(7px);
+  }
+}
+
+/* La version modifiée de l'animation de montée */
+.smoke-delayed, .smoke-fourth {
+  animation-name: fade-in, smoke-rise-alt;
+}
+
+/* Ajout d'une cinquième couche de fumée pour plus de volume */
+.smoke-fifth {
+  width: 10px;
+  height: 10px;
+  background: rgba(200, 200, 200, 0.16); /* Réduit de 0.2 à 0.16 */
+  position: absolute;
+  top: 92px; /* Déplacé vers le bas de 72px à 92px */
+  left: 135px;
+  opacity: 0;
+  animation-name: fade-in, smoke-rise;
+  animation-duration: 0.5s, 5s;
+  animation-timing-function: ease-in, cubic-bezier(0.25, 0.1, 0.25, 1);
+  animation-delay: 0.9s, 1.4s;
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: forwards, forwards;
+  box-shadow: 
+    -30px -15px 0 10px rgba(200, 200, 200, 0.14),
+    -35px -30px 0 12px rgba(200, 200, 200, 0.12),
+    -28px -45px 0 14px rgba(200, 200, 200, 0.1),
+    -34px -60px 0 16px rgba(200, 200, 200, 0.09),
+    -27px -75px 0 18px rgba(200, 200, 200, 0.08),
+    
+    /* Particules très larges */
+    -55px -20px 0 16px rgba(200, 200, 200, 0.11),
+    -50px -40px 0 18px rgba(200, 200, 200, 0.09),
+    -60px -60px 0 20px rgba(200, 200, 200, 0.07),
+    -55px -80px 0 22px rgba(200, 200, 200, 0.05);
+}

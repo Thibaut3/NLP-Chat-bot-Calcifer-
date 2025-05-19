@@ -1,0 +1,13 @@
+@keyframes talk {
+    0%, 100% { height: 9px; }
+    50% { height: 3px; }
+  }
+
+  .calcifer.active .eyes::before {
+    transform: scaleY(0.3);
+    border-radius: 50% 50% 20% 20%;
+  }
+  .calcifer.active .mouth {
+    animation: talk 0.2s infinite alternate;
+    opacity: 0.8;
+  }
